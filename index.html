@@ -1,222 +1,126 @@
-<!-- <!DOCTYPE html>
-<html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <title>قرعه‌کشی طلایی</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Vazirmatn', sans-serif;
-      direction: rtl;
-      text-align: center;
-      padding: 30px;
-      background-image: url('https://cdn.honarechehre.ir/images/3a370270-a347-11ef-a5be-499046e87cc4.webp');
-      /* background-image: url('https://pikfree.ir/wp-content/uploads/edd/2019/12/gold-nuggets-on-black-background-closeup-Top.jpg'); */
-      /* background-image: url('https://afrafile.com/storage/upload/post/1639921100-5486780.webp'); */
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: gold;
-      text-shadow: 0 0 10px #000;
-    }
-
-    input, button {
-      margin: 10px;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    input[type="text"], input[type="number"] {
-      width: 250px;
-    }
-
-    button {
-      background-color: gold;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px #222;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #ffd700;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      background: rgba(0, 0, 0, 0.6);
-      margin: 5px auto;
-      padding: 10px;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px gold;
-    }
-  </style>
-</head>
-<body>
-  <h1>قرعه‌کشی طلایی</h1>
-
-  <input type="text" id="nameInput" placeholder="نام شرکت‌کننده را وارد کنید">
-  <button onclick="addName()">افزودن</button>
-
-  <h3>لیست شرکت‌کنندگان:</h3>
-  <ul id="nameList"></ul>
-
-  <input type="number" id="numWinners" min="1" placeholder="تعداد برندگان">
-  <button onclick="pickWinners()">قرعه‌کشی</button>
-
-  <h3>برندگان:</h3>
-  <ul id="winnerList"></ul>
-
-  <script>
-    const names = [];
-
-    function addName() {
-      const input = document.getElementById("nameInput");
-      const name = input.value.trim();
-      if (name) {
-        names.push(name);
-        updateNameList();
-        input.value = "";
-      }
-    }
-
-    function updateNameList() {
-      const list = document.getElementById("nameList");
-      list.innerHTML = "";
-      names.forEach((name, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}- ${name}`;
-        list.appendChild(li);
-      });
-    }
-
-    function pickWinners() {
-      const num = parseInt(document.getElementById("numWinners").value);
-      const winnerList = document.getElementById("winnerList");
-      winnerList.innerHTML = "";
-      if (isNaN(num) || num < 1 || num > names.length) {
-        alert("تعداد برندگان معتبر نیست");
-        return;
-      }
-      const shuffled = [...names].sort(() => 0.5 - Math.random());
-      const winners = shuffled.slice(0, num);
-      winners.forEach((winner, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}- ${winner}`;
-        winnerList.appendChild(li);
-      });
-    }
-  </script>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>قرعه‌کشی طلایی</title>
+  <title>قرعه‌کشی</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #1a73e8;
+      --text: #333;
+      --border: #ddd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Vazirmatn', sans-serif;
       direction: rtl;
-      text-align: center;
-      padding: 30px;
-      background-image: url('https://cdn.honarechehre.ir/images/3a370270-a347-11ef-a5be-499046e87cc4.webp');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
+      background: linear-gradient(120deg, #e6edf7, #d7bcfa,#aec3f3,#baffd0);
+      background-size: 400% 400%;
+      animation: gradientBackground 22s ease infinite;
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: gold;
-      text-shadow: 0 0 10px #000;
+      margin-bottom: 10px;
+      text-align: center;
+      color: var(--primary);
     }
 
-    input, button {
-      margin: 10px;
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-    }
-
-    input[type="text"], input[type="number"] {
-      width: 250px;
-    }
-
-    button {
-      background-color: gold;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px #222;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #ffd700;
-    }
-
-    table {
-      margin: 0 auto;
-      width: 60%;
-      border-collapse: collapse;
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 10px gold;
+    #date {
+      text-align: center;
+      font-size: 1rem;
+      color: #666;
       margin-bottom: 30px;
     }
 
-    th, td {
-      border: 1px solid gold;
-      padding: 10px;
-    }
-
-    .modal-background {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 10;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: #222;
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
       padding: 30px;
-      border-radius: 15px;
-      z-index: 11;
-      color: gold;
-      box-shadow: 0 0 15px #000;
-      text-align: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.06);
     }
 
-    .modal h2 {
-      font-size: 2rem;
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      resize: none;
       margin-bottom: 20px;
     }
 
-    .modal ul li {
-      font-size: 1.5rem;
-      margin: 10px 0;
+    input[type="number"] {
+      width: 150px;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #155ac1;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .card {
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: calc(25% - 12px);
+      min-width: 160px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      background-size: cover;
+      background-blend-mode: overlay;
+    }
+
+    .card span {
+      font-size: 0.95rem;
+      overflow-wrap: anywhere;
+    }
+
+    .card button {
+      background: transparent;
+      color: crimson;
+      font-size: 1.2rem;
+      padding: 0 6px;
     }
 
     .loader {
@@ -225,43 +129,121 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 2rem;
-      font-weight: bold;
-      color: gold;
-      z-index: 12;
+      font-size: 1.5rem;
+      color: var(--primary);
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      z-index: 1001;
+    }
+
+    .modal-background {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      z-index: 1001;
+    }
+
+    .modal h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .modal ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal ul li {
+      margin: 10px 0;
+      font-size: 1.4rem;
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-inline: auto;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      color: #444;
     }
   </style>
 </head>
 <body>
-  <h1>قرعه‌کشی طلایی</h1>
+  <h1>قرعه‌کشی توکا</h1>
+  <div id="date"></div>
+  <div class="container">
+    <textarea id="nameInput" placeholder="نام‌ها را با کاما از هم جدا کنید"></textarea>
+    <button onclick="addName()">افزودن اسامی</button>
 
-  <input type="text" id="nameInput" placeholder="نام‌ها را وارد کنید (با کاما جدا کنید)">
-  <button onclick="addName()">افزودن</button>
+    <div class="cards" id="nameList"></div>
 
-  <h3>لیست شرکت‌کنندگان:</h3>
-  <table>
-    <thead>
-      <tr><th>ردیف</th><th>نام</th><th>حذف</th></tr>
-    </thead>
-    <tbody id="nameList"></tbody>
-  </table>
-
-  <input type="number" id="numWinners" min="1" placeholder="تعداد برندگان">
-  <button onclick="startDraw()">قرعه‌کشی</button>
+    <div style="margin-top: 30px">
+      <input type="number" id="numWinners" min="1" placeholder="تعداد برندگان">
+      <button onclick="startDraw()">قرعه‌کشی</button>
+    </div>
+  </div>
 
   <div class="loader" id="loader">در حال قرعه‌کشی...</div>
   <div class="modal-background" id="modalBg"></div>
   <div class="modal" id="resultModal">
     <h2>برندگان قرعه‌کشی</h2>
     <ul id="winnerList"></ul>
-    <button onclick="closeModal()">انجام دوباره</button>
+    <button onclick="closeModal()">انجام دوباره</button> 
   </div>
 
   <script>
     const names = [];
+    const cardColors = [
+      "linear-gradient(135deg, #fef6e4, #fcefc7)",
+      "linear-gradient(135deg, #e0f7fa, #b2ebf2)",
+      "linear-gradient(135deg, #e1bee7, #f3e5f5)",
+      "linear-gradient(135deg, #c8e6c9, #a5d6a7)",
+      "linear-gradient(135deg, #fff9c4, #fff59d)",
+      "linear-gradient(135deg, #f8bbd0, #f48fb1)",
+      "linear-gradient(135deg, #d1c4e9, #b39ddb)",
+      "linear-gradient(135deg, #b2dfdb, #80cbc4)",
+      "linear-gradient(135deg, #ffecb3, #ffe082)",
+      "linear-gradient(135deg, #cfd8dc, #b0bec5)",
+      "linear-gradient(135deg, #f0f4c3, #e6ee9c)",
+      "linear-gradient(135deg, #dcedc8, #c5e1a5)",
+      "linear-gradient(135deg, #ffe0b2, #ffcc80)",
+      "linear-gradient(135deg, #f3e5f5, #e1bee7)",
+      "linear-gradient(135deg, #e0f2f1, #b2dfdb)",
+      "linear-gradient(135deg, #d7ccc8, #bcaaa4)",
+      "linear-gradient(135deg, #ffccbc, #ffab91)",
+      "linear-gradient(135deg, #c8e6c9, #a5d6a7)",
+      "linear-gradient(135deg, #f5f5f5, #eeeeee)",
+      "linear-gradient(135deg, #e1f5fe, #b3e5fc)",
+      "linear-gradient(135deg, #fce4ec, #f8bbd0)",
+      "linear-gradient(135deg, #f3f3f3, #e0e0e0)",
+      "linear-gradient(135deg, #ede7f6, #d1c4e9)",
+      "linear-gradient(135deg, #f1f8e9, #dcedc8)"
+    ];
 
     document.getElementById("nameInput").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
+      if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         addName();
       }
@@ -271,7 +253,7 @@
       const input = document.getElementById("nameInput");
       const inputText = input.value.trim();
       if (inputText) {
-        const newNames = inputText.split(',').map(name => name.trim()).filter(n => n);
+        const newNames = inputText.split(/[،,]/).map(name => name.trim()).filter(n => n);
         names.push(...newNames);
         updateNameList();
         input.value = "";
@@ -282,28 +264,23 @@
       const list = document.getElementById("nameList");
       list.innerHTML = "";
       names.forEach((name, index) => {
-        const row = document.createElement("tr");
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.background = cardColors[index % cardColors.length];
 
-        const indexCell = document.createElement("td");
-        indexCell.textContent = index + 1;
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = name;
 
-        const nameCell = document.createElement("td");
-        nameCell.textContent = name;
-
-        const deleteCell = document.createElement("td");
         const delBtn = document.createElement("button");
-        delBtn.textContent = "❌";
-        delBtn.style.cursor = "pointer";
+        delBtn.textContent = "✕";
         delBtn.onclick = () => {
           names.splice(index, 1);
           updateNameList();
         };
-        deleteCell.appendChild(delBtn);
 
-        row.appendChild(indexCell);
-        row.appendChild(nameCell);
-        row.appendChild(deleteCell);
-        list.appendChild(row);
+        card.appendChild(nameSpan);
+        card.appendChild(delBtn);
+        list.appendChild(card);
       });
     }
 
@@ -322,22 +299,43 @@
       }, 1500);
     }
 
+   
     function pickWinners(num) {
-      const winnerList = document.getElementById("winnerList");
-      winnerList.innerHTML = "";
-      const shuffled = [...names].sort(() => 0.5 - Math.random());
-      const winners = shuffled.slice(0, num);
-      winners.forEach((winner, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}- ${winner}`;
-        winnerList.appendChild(li);
-      });
-    }
+  const winnerList = document.getElementById("winnerList");
+  winnerList.innerHTML = "";
+
+  const remaining = [...names];
+  while (remaining.length > num) {
+    const indexToRemove = Math.floor(Math.random() * remaining.length);
+    remaining.splice(indexToRemove, 1);
+  }
+
+  remaining.forEach((name, index) => {
+    const li = document.createElement("li");
+    li.textContent = `${index + 1}) ${name}`;
+    li.style.background = cardColors[index % cardColors.length];
+    li.style.borderRadius =  '10px';
+    li.style.width =  '60%';
+    li.style.height =  '55px';
+    li.style.textAlign = 'start';
+    winnerList.appendChild(li);
+  });
+}
 
     function closeModal() {
       document.getElementById("modalBg").style.display = "none";
       document.getElementById("resultModal").style.display = "none";
     }
+
+    function getPersianDate() {
+      const today = new Date();
+      const formatter = new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' });
+      document.getElementById('date').textContent = formatter.format(today);
+    }
+
+   
+
+    getPersianDate();
   </script>
 </body>
 </html>
