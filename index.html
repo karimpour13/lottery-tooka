@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="fa">
-<head>
-  <meta charset="UTF-8">
-  <title>قرعه‌کشی</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
+  <head>
+    <meta charset="UTF-8">
+    <title>قرعه‌کشی توکا</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
       --primary: #1a73e8;
       --text: #333;
       --border: #ddd;
@@ -18,9 +19,9 @@
     body {
       font-family: 'Vazirmatn', sans-serif;
       direction: rtl;
-      background: linear-gradient(120deg, #e6edf7, #d7bcfa,#aec3f3,#baffd0);
+      background: linear-gradient(120deg, #d4f2f9, #8ab1f6, #8af6e9);
       background-size: 400% 400%;
-      animation: gradientBackground 22s ease infinite;
+      animation: gradientBackground 12s ease infinite;
       color: var(--text);
       margin: 0;
       padding: 40px 20px;
@@ -103,17 +104,20 @@
       border-radius: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      width: calc(25% - 12px);
-      min-width: 160px;
+      align-items: flex-start;
+      flex: 1 1 calc(25% - 12px);
+      min-width: 140px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       background-size: cover;
       background-blend-mode: overlay;
+      position: relative;
+      flex-direction: row-reverse;
     }
 
     .card span {
       font-size: 0.95rem;
       overflow-wrap: anywhere;
+      flex-grow: 1;
     }
 
     .card button {
@@ -121,6 +125,9 @@
       color: crimson;
       font-size: 1.2rem;
       padding: 0 6px;
+      position: absolute;
+      left: 8px;
+      top: 8px;
     }
 
     .loader {
@@ -188,8 +195,40 @@
       box-shadow: 0 1px 6px rgba(0,0,0,0.1);
       color: #444;
     }
-  </style>
-</head>
+
+    @media (max-width: 768px) {
+      .card {
+        flex: 1 1 calc(50% - 12px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        flex: 1 1 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 40px;
+        position: relative;
+      }
+
+      .card button {
+        left: 8px;
+        top: 8px; 
+      }
+
+      input[type="number"] {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      
+    }
+    </style>
+  </head>
 <body>
   <h1>قرعه‌کشی توکا</h1>
   <div id="date"></div>
@@ -327,15 +366,33 @@
       document.getElementById("resultModal").style.display = "none";
     }
 
-    function getPersianDate() {
-      const today = new Date();
-      const formatter = new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' });
-      document.getElementById('date').textContent = formatter.format(today);
-    }
+    // function getPersianDate() {
+    //   const today = new Date();
+    //   const formatter = new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' });
+    //   document.getElementById('date').textContent = formatter.format(today);
+    // }
 
-   
+    function getPersianDateTime() {
+  const today = new Date();
+  const dateFormatter = new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' });
+  const timeFormatter = new Intl.DateTimeFormat('fa-IR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false  
+  });
+  
+  const persianDate = dateFormatter.format(today);
+  const persianTime = timeFormatter.format(today);
+  
+  document.getElementById('date').textContent = `${persianDate} - ساعت ${persianTime}`;
+}
 
-    getPersianDate();
+ 
+getPersianDateTime();
+
+ 
+setInterval(getPersianDateTime, 1000);
   </script>
 </body>
 </html>
